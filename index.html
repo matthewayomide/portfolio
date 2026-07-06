@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matthew Aninkan · Elite Full-Stack Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --gold: #d4a853;
+            --gold-light: #f0d080;
+            --gold-dark: #b8923a;
+            --dark-bg: #0a0a12;
+            --card-dark: #12121f;
+            --text-light: #f0f4ff;
+            --text-muted: #8899bb;
+            --glass-border: rgba(212, 168, 83, 0.12);
+            --shadow-gold: rgba(212, 168, 83, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ---- ANIMATED BACKGROUND ---- */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(212, 168, 83, 0.08);
+            top: -200px;
+            right: -200px;
+            animation: floatOrb 20s ease-in-out infinite;
+        }
+        .bg-orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(60, 120, 255, 0.06);
+            bottom: -150px;
+            left: -150px;
+            animation: floatOrb 25s ease-in-out infinite reverse;
+        }
+        .bg-orb-3 {
+            width: 400px;
+            height: 400px;
+            background: rgba(212, 168, 83, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: floatOrb 30s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.1); }
+            66% { transform: translate(-20px, 30px) scale(0.9); }
+        }
+
+        /* ---- NAVIGATION ---- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 168, 83, 0.08);
+            transition: 0.3s;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 32px;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--dark-bg) !important;
+            padding: 10px 28px;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            transition: 0.3s;
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--text-light);
+            transition: 0.3s;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 5% 80px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+            background: rgba(212, 168, 83, 0.05);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 45px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--dark-bg);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px var(--shadow-gold);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            border-color: var(--gold);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 70px;
+        }
+        .hero-stats .stat {
+            text-align: center;
+        }
+        .hero-stats .stat h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--gold);
+        }
+        .hero-stats .stat p {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        /* ---- SECTION COMMON ---- */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 6%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header .label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+        }
+        .section-header h2 span {
+            color: var(--gold);
+        }
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 15px auto 0;
+            font-size: 1.05rem;
+        }
+
+        /* ---- ABOUT ---- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            margin-bottom: 25px;
+        }
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .about-text .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+        .about-image .img-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 168, 83, 0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .about-image .img-wrapper img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        .about-image .gold-accent {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* ---- EXPERIENCE ---- */
+        .exp-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .exp-item {
+            background: var(--card-dark);
+            border-radius: 16px;
+            padding: 35px 40px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            opacity: 0.6;
+        }
+        .exp-item:hover {
+            border-color: rgba(212, 168, 83, 0.15);
+            transform: translateX(8px);
+        }
+
+        .exp-item .top-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 15px;
+        }
+        .exp-item .top-row h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .exp-item .top-row .company {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .exp-item .top-row .date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.03);
+            padding: 4px 16px;
+            border-radius: 40px;
+        }
+        .exp-item ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 30px;
+            margin-top: 10px;
+        }
+        .exp-item ul li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .exp-item ul li i {
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        /* ---- PROJECTS ---- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-dark);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.4s;
+            position: relative;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 168, 83, 0.15);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .project-card .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .project-card .card-image .badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--dark-bg);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .project-card .card-body {
+            padding: 28px 30px;
+        }
+        .project-card .card-body h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .project-card .card-body .tech {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .project-card .card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .project-card .card-body .link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .project-card .card-body .link:hover {
+            color: var(--gold-light);
+        }
+
+        /* ---- SKILLS ---- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .skill-pill {
+            background: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+            color: var(--text-muted);
+        }
+        .skill-pill i {
+            margin-right: 8px;
+            color: var(--gold);
+        }
+        .skill-pill:hover {
+            border-color: var(--gold);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* ---- TESTIMONIALS ---- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--card-dark);
+            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(212, 168, 83, 0.1);
+        }
+        .testimonial-card .stars {
+            color: var(--gold);
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+        }
+        .testimonial-card blockquote {
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--dark-bg);
+        }
+        .testimonial-card .author .info h5 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .testimonial-card .author .info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ---- CONTACT ---- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .contact-info .detail {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .contact-info .detail i {
+            width: 44px;
+            height: 44px;
+            background: rgba(212, 168, 83, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+        }
+        .contact-info .detail div h6 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        .contact-info .detail div p {
+            margin: 0;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--card-dark);
+            padding: 45px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.05);
+        }
+        .contact-form textarea {
+            height: 140px;
+            resize: none;
+            margin-bottom: 20px;
+        }
+        .contact-form .full-width {
+            grid-column: span 2;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px var(--shadow-gold);
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            position: relative;
+            z-index: 1;
+            background: var(--card-dark);
+            padding: 70px 6% 30px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer-col h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .footer-col ul li a:hover {
+            color: var(--gold);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .footer-bottom .social a {
+            color: var(--text-muted);
+            margin-left: 20px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .footer-bottom .social a:hover {
+            color: var(--gold);
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; gap: 50px; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-bg);
+                flex-direction: column;
+                padding: 30px;
+                border-bottom: 1px solid rgba(212, 168, 83, 0.08);
+                gap: 20px;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: flex; }
+
+            .hero h1 { font-size: 3.2rem; }
+            .hero-stats { gap: 30px; flex-wrap: wrap; justify-content: center; }
+
+            .projects-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+
+            .exp-item ul { grid-template-columns: 1fr; }
+            .contact-form .form-row { grid-template-columns: 1fr; }
+            .contact-form .full-width { grid-column: span 1; }
+
+            section { padding: 70px 5%; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .section-header h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">M<span>.</span>Aninkan</a>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">✦ Available for Immediate Impact</div>
+        <h1>Matthew <span class="highlight">Aninkan</span></h1>
+        <p>Full-Stack Engineer &amp; IT Instructor crafting high-performance web applications, AI-driven experiences, and mentoring the next generation of tech talent.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a Project</a>
+            <a href="#projects" class="btn btn-secondary"><i class="fas fa-eye"></i> View My Work</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><h3>5+</h3><p>Years Experience</p></div>
+            <div class="stat"><h3>100+</h3><p>Students Mentored</p></div>
+            <div class="stat"><h3>15+</h3><p>Projects Delivered</p></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-header">
+            <span class="label">About Me</span>
+            <h2>Engineering <span>Excellence</span></h2>
+            <p>Passionate about building secure, scalable solutions that drive real business impact.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Full-Stack Developer &amp; IT Instructor</h3>
+                <p>With over 5 years of experience, I design and develop responsive web applications, e-commerce platforms, and AI-enhanced digital products. I combine strong design sensibilities with deep technical expertise to deliver solutions that are both beautiful and robust.</p>
+                <p>Currently leading development at Digital Micro Technology (DMT) ICT Institute, where I mentor 100+ students in web development, UI/UX, data science, and emerging technologies. I also co-founded MattTechies Academy, a modern tech education brand empowering over 250 students with practical digital skills.</p>
+                <div class="signature">— Matthew Aninkan</div>
+            </div>
+            <div class="about-image">
+                <div class="gold-accent"></div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Matthew Aninkan" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" style="background: rgba(18, 18, 31, 0.3);">
+        <div class="section-header">
+            <span class="label">Career Path</span>
+            <h2>Professional <span>Experience</span></h2>
+        </div>
+        <div class="exp-timeline">
+            <div class="exp-item">
+                <div class="top-row">
+                    <h3>Software Developer &amp; IT Instructor</h3>
+                    <span class="company">Digital Micro Technology (DMT) ICT Institute</span>
+                    <span class="date">Apr 2022 – Present</span>
+                </div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Full-stack solutions: HTML, CSS, JS, Bootstrap, PHP, MySQL</li>
+                    <li><i class="fas fa-check"></i> Corporate websites, e‑commerce &amp; custom apps</li>
+                    <li><i class="fas fa-check"></i> Mentored 100+ students in web dev, UI/UX, data science &amp; AI</li>
+                    <li><i class="fas fa-check"></i> Integrated ML liveliness checks for advanced authentication</li>
+                    <li><i class="fas fa-check"></i> Dating web app with facial recognition &amp; premium features</li>
+                    <li><i class="fas fa-check"></i> Enterprise projects that strengthened DMT's reputation</li>
+                </ul>
+            </div>
+
+            <div class="exp-item" style="border-color: rgba(212, 168, 83, 0.1);">
+                <div class="top-row">
+                    <h3>Co-Founder</h3>
+                    <span class="company">MattTechies Academy</span>
+                    <span class="date">2021 – Present</span>
+                </div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Modern tech education &amp; digital skills brand</li>
+                    <li><i class="fas fa-check"></i> Organized cohort with 250+ students</li>
+                    <li><i class="fas fa-check"></i> Training in web development, WordPress, AI, graphics design</li>
+                    <li><i class="fas fa-check"></i> Solved various tech problems for clients</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="section-header">
+            <span class="label">Portfolio</span>
+            <h2>Key <span>Projects</span></h2>
+            <p>Real-world solutions built with full-stack expertise and AI integration.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="card-image" style="background-image: url('ruluk.jpg');">
+                    <span class="badge">Full-Stack</span>
+                </div>
+                <div class="card-body">
+                    <h4>Ruluk Investment Ltd</h4>
+                    <span class="tech">HTML · CSS · Bootstrap · PHP · MySQL</span>
+                    <p>Unified 3‑in‑1 platform covering automobile sales, real-estate listings, and foreign admission processing with a clean, responsive interface and backend CMS.</p>
+                    <a href="https://rulukinvestmentlimited.com.ng/" class="link">View Project →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-image" style="background-image: url('wonderkids.jpg');">
+                    <span class="badge">E-Commerce</span>
+                </div>
+                <div class="card-body">
+                    <h4>WonderKid Store</h4>
+                    <span class="tech">HTML · CSS · Bootstrap · JS · PHP · MySQL</span>
+                    <p>Online store for children's products with custom WooCommerce-style backend. Product upload, category management, and order handling.</p>
+                    <a href="https://wonderkidstore.com.ng/" class="link">View Project →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-image" style="background-image: url('nairadate.jpg');">
+                    <span class="badge">AI + Social</span>
+                </div>
+                <div class="card-body">
+                    <h4>Dating Web Application</h4>
+                    <span class="tech">HTML · CSS · JS · Bootstrap · PHP · MySQL</span>
+                    <p>Full-stack social platform with facial-recognition login, social posting, liking, commenting, and premium subscription features.</p>
+                    <a href="https://github.com/matthewayomide/nairadate/tree/master" class="link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section style="background: rgba(18, 18, 31, 0.3);">
+        <div class="section-header">
+            <span class="label">Expertise</span>
+            <h2>Technical <span>Skills</span></h2>
+        </div>
+        <div class="skills-container">
+            <span class="skill-pill"><i class="fab fa-html5"></i>HTML</span>
+            <span class="skill-pill"><i class="fab fa-css3-alt"></i>CSS</span>
+            <span class="skill-pill"><i class="fab fa-js"></i>JavaScript</span>
+            <span class="skill-pill"><i class="fab fa-bootstrap"></i>Bootstrap</span>
+            <span class="skill-pill"><i class="fas fa-code"></i>AJAX</span>
+            <span class="skill-pill"><i class="fas fa-paint-brush"></i>UI/UX</span>
+            <span class="skill-pill"><i class="fab fa-php"></i>PHP</span>
+            <span class="skill-pill"><i class="fas fa-database"></i>MySQL</span>
+            <span class="skill-pill"><i class="fab fa-git-alt"></i>Git</span>
+            <span class="skill-pill"><i class="fas fa-file-alt"></i>Figma</span>
+            <span class="skill-pill"><i class="fas fa-brain"></i>Data Science</span>
+            <span class="skill-pill"><i class="fas fa-robot"></i>Machine Learning</span>
+            <span class="skill-pill"><i class="fas fa-gamepad"></i>Game Dev</span>
+            <span class="skill-pill"><i class="fas fa-users"></i>Mentorship</span>
+            <span class="skill-pill"><i class="fas fa-cloud"></i>Cloud Computing</span>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="section-header">
+            <span class="label">Testimonials</span>
+            <h2>What People <span>Say</span></h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"Matthew delivered a flawless corporate platform for us. The 3‑in‑1 system streamlined our entire operation. His attention to detail and backend expertise are outstanding."</blockquote>
+                <div class="author">
+                    <div class="avatar">RO</div>
+                    <div class="info">
+                        <h5>Ruth Okafor</h5>
+                        <span>MD, Ruluk Investment Ltd</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"The WonderKid Store has been a game-changer. Matthew built a custom e-commerce backend that makes managing products and orders so intuitive. Our sales have increased significantly."</blockquote>
+                <div class="author">
+                    <div class="avatar">KO</div>
+                    <div class="info">
+                        <h5>Kemi Oladipo</h5>
+                        <span>Founder, WonderKid Store</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"As a student at DMT, Matthew's teaching style made complex topics like data science and machine learning accessible. He truly cares about his students' growth and success."</blockquote>
+                <div class="author">
+                    <div class="avatar">JE</div>
+                    <div class="info">
+                        <h5>John Eze</h5>
+                        <span>Alumni, DMT ICT Institute</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="background: rgba(18, 18, 31, 0.3);">
+        <div class="section-header">
+            <span class="label">Get in Touch</span>
+            <h2>Let's Build <span>Together</span></h2>
+            <p>Have a project in mind? Let's create something exceptional.</p>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Let's Talk</h3>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Whether you need a full-stack solution, AI integration, Branding,Graphics Design or technical mentorship, I'm here to help.</p>
+                <div class="detail">
+                    <i class="fas fa-map-pin"></i>
+                    <div>
+                        <h6>Location</h6>
+                        <p>Lagos, Nigeria · Available for Remote &amp; Relocation</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h6>Phone</h6>
+                        <p>+234 816 546 2500</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h6>Email</h6>
+                        <p>matthewaninkan@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <input type="text" placeholder="Your Name" id="name" required />
+                    <input type="email" placeholder="Your Email" id="email" required />
+                </div>
+                <select required id="scope">
+                    <option value="" disabled selected>Select Project Scope</option>
+                    <option value="fullstack">Full-Stack Web Application</option>
+                    <option value="ecommerce">E-Commerce Platform</option>
+                    <option value="ai">AI / Machine Learning Integration</option>
+                    <option value="consultation">Technical Consultation / Mentorship</option>
+                </select>
+                <textarea placeholder="Tell me about your project..." id="message" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send Project Brief</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-light);">M<span style="color: var(--gold);">.</span>Aninkan</h4>
+                <p>Full-Stack Developer &amp; IT Instructor · Building secure, scalable, and user-friendly digital solutions while mentoring the next generation of tech talent.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Stack</h4>
+                <ul>
+                    <li><a href="#">HTML / CSS / Bootstrap</a></li>
+                    <li><a href="#">JavaScript / PHP / MySQL</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">Data Science / ML</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Matthew Aninkan. All rights reserved. Engineered with precision.</p>
+            <div class="social">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Form handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Thank you, ${name}! Your project brief has been submitted. I'll review it and get back to you within 24 hours.`);
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

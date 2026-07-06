@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Aninkan | Full‑Stack Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8fafc;
+      color: #1f2937;
+    }
+    nav {
+      background-color: #0d6efd;
+    }
+    nav a {
+      color: #fff !important;
+      font-weight: 500;
+    }
+    header {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+      color: #fff;
+      text-align: center;
+    }
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      color: #0d6efd;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform .2s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+    footer {
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="#">Matthew Aninkan</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header>
+  <div class="container">
+    <h1 class="fw-bold mb-3">Hi, I’m Matthew Aninkan</h1>
+    <h4 class="fw-normal mb-4">Full‑Stack Developer & IT Instructor</h4>
+    <a href="#projects" class="btn btn-light btn-lg">View My Work</a>
+  </div>
+</header>
+
+<!-- About -->
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I’m a passionate and versatile full‑stack developer with over 5 years of experience in designing and building web solutions that merge clean UI with robust backend logic. 
+      I specialize in <strong>HTML, CSS, JavaScript, Bootstrap, PHP, and MySQL</strong> — crafting applications that solve real business problems and enhance user experience.
+    </p>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="project-card p-3 h-100">
+          <h5>Ruluk Investment Ltd</h5>
+          <p>A 3‑in‑1 platform for automobile sales, foreign admission processing, and real estate listings.</p>
+          <a href="[rulukinvestmentlimited.com.ng](https://rulukinvestmentlimited.com.ng/)" target="_blank" class="btn btn-primary btn-sm">Visit Site</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="project-card p-3 h-100">
+          <h5>WonderKid Store</h5>
+          <p>A modern e‑commerce platform for children’s products with custom backend similar to WooCommerce.</p>
+          <a href="[wonderkidstore.com.ng](http://wonderkidstore.com.ng/)" target="_blank" class="btn btn-primary btn-sm">Visit Site</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="project-card p-3 h-100">
+          <h5>Dating Web App</h5>
+          <p>A full‑stack platform featuring facial recognition login, social posting, and premium subscriptions.</p>
+          <a href="#" class="btn btn-primary btn-sm disabled">Demo Available on Request</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="py-5">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          <li>Front‑End: HTML, CSS, JavaScript, Bootstrap, AJAX</li>
+          <li>Back‑End: PHP, MySQL</li>
+          <li>UI/UX Design with Figma & Corel DRAW</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li>Other Technologies: Machine Learning, Game Development, Data Science</li>
+          <li>Tools: Git, VS Code</li>
+          <li>Soft Skills: Collaboration, Communication, Problem‑Solving</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="section-title">Get In Touch</h2>
+    <p>If you’d like to work together or have a project idea, feel free to reach out.</p>
+    <a href="mailto:matthewaninkan@gmail.com" class="btn btn-primary btn-lg">Contact Me</a><br><br>
+    <p><a href="[github.com](https://github.com/matthewayomide)" target="_blank">GitHub</a> | <a href="[linkedin.com](https://linkedin.com/in/matthew-aninkan-638a28256)" target="_blank">LinkedIn</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 Matthew Aninkan – Built with ❤️ and HTML/CSS/Bootstrap</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

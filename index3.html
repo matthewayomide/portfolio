@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Matthew Aninkan | Web Developer & Tech Instructor</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafcff;
+      color: #111827;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* glassmorphism / modern elements */
+    section {
+      padding: 5rem 0;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #a855f7);
+      border-radius: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1e293b;
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.35);
+      background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* header / nav */
+    header {
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1f2937;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    /* hero */
+    .hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-content {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      background: #e0e7ff;
+      color: #1e40af;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3.3rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #3b82f6, #a855f7);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #4b5563;
+      margin: 1.5rem 0;
+      max-width: 550px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .hero-stats {
+      flex: 0.8;
+      background: #ffffffdd;
+      backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .stat-item {
+      margin-bottom: 1.8rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    /* skills grid */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-tag {
+      background: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+
+    .skill-tag i {
+      margin-right: 8px;
+      color: #3b82f6;
+    }
+
+    .skill-tag:hover {
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+
+    /* project cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      border: 1px solid #edf2f7;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15);
+    }
+
+    .project-info {
+      padding: 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #0f172a;
+    }
+
+    .project-subtitle {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.2px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tech-badge {
+      background: #f1f5f9;
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .project-link {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      transition: 0.2s;
+    }
+
+    .project-link:hover {
+      gap: 0.7rem;
+      color: #1d4ed8;
+    }
+
+    /* cert & cta */
+    .cert-section {
+      background: linear-gradient(110deg, #f8fafc 0%, #eef2ff 100%);
+      border-radius: 2rem;
+      padding: 2.5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-form {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .social-links a {
+      color: white;
+      margin: 0 0.8rem;
+      font-size: 1.4rem;
+      transition: 0.2s;
+    }
+
+    .social-links a:hover {
+      color: #60a5fa;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 780px) {
+      .hero-grid {
+        flex-direction: column;
+      }
+      .nav-links {
+        gap: 1rem;
+        margin-top: 0.8rem;
+      }
+      nav {
+        flex-direction: column;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Matthew<span style="color:#2563eb;">.</span>Dev</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Tech Stack</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Connect</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge"><i class="fas fa-code"></i> Professional Web Dev & Tech Instructor</span>
+          <h1>Building <span class="highlight">Modern Solutions</span> That Drive Impact</h1>
+          <p class="hero-desc">I craft responsive, high-performance websites and web apps that solve real problems, boost your digital presence, and leverage SEO & latest technologies.</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Collaborate with me</a>
+            <a href="#projects" class="btn btn-outline"><i class="fas fa-eye"></i> See my work</a>
+          </div>
+          <div class="skills-grid" style="margin-top: 2rem;">
+            <div class="skill-tag"><i class="fab fa-html5"></i> HTML5</div>
+            <div class="skill-tag"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="skill-tag"><i class="fab fa-js"></i> JavaScript</div>
+            <div class="skill-tag"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+            <div class="skill-tag"><i class="fab fa-wordpress"></i> WordPress</div>
+            <div class="skill-tag"><i class="fab fa-python"></i> Python</div>
+            <div class="skill-tag"><i class="fas fa-database"></i> MySQL</div>
+            <div class="skill-tag"><i class="fab fa-git-alt"></i> Git/GitHub</div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item"><div class="stat-number">5+</div><div>Years Experience</div></div>
+          <div class="stat-item"><div class="stat-number">50+</div><div>Projects Delivered</div></div>
+          <div class="stat-item"><div class="stat-number">100%</div><div>Client Focus & SEO Ready</div></div>
+          <div class="stat-item"><i class="fas fa-certificate" style="color:#2563eb;"></i> Certified by Top IT Institute</div>
+          <div class="stat-item"><i class="fab fa-github"></i> + <i class="fab fa-linkedin"></i> Active Portfolio</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tools + Certifications -->
+  <section id="skills">
+    <div class="container">
+      <h2>⚙️ Tech Arsenal & Expertise</h2>
+      <div class="cert-section">
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+          <div style="flex:1">
+            <h3><i class="fas fa-layer-group"></i> Frontend & Backend</h3>
+            <div class="skills-grid" style="margin-top: 0.5rem;">
+              <span class="skill-tag">React.js</span><span class="skill-tag">jQuery</span><span class="skill-tag">Bootstrap 5</span>
+              <span class="skill-tag">PHP</span><span class="skill-tag">WordPress (CMS)</span><span class="skill-tag">MySQL</span>
+              <span class="skill-tag">REST APIs</span><span class="skill-tag">Python / Flask</span>
+            </div>
+            <h3 style="margin-top: 1.5rem;"><i class="fas fa-palette"></i> Design & Version Control</h3>
+            <div class="skills-grid">
+              <span class="skill-tag"><i class="fas fa-paintbrush"></i> Photoshop</span>
+              <span class="skill-tag"><i class="fas fa-vector-square"></i> Corel Draw</span>
+              <span class="skill-tag"><i class="fab fa-figma"></i> UI/UX</span>
+              <span class="skill-tag"><i class="fab fa-github"></i> Git & GitHub</span>
+            </div>
+          </div>
+          <div style="flex:1">
+            <h3><i class="fas fa-award"></i> Certification & Growth</h3>
+            <p style="margin-top: 1rem;">✅ Certified Full-Stack Web Developer — One of the best IT institutes in Nigeria.<br>
+            ✅ Continuous upskilling: modern web performance, SEO strategies, headless CMS.<br>
+            ✅ Google Analytics & Search Console basics for data-driven decisions.</p>
+            <div style="margin-top: 1rem;"><i class="fas fa-chalkboard-user"></i> <strong>Tech Instructor</strong> — empowering next-gen developers with real-world projects.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects: Updated with Ruluk, WonderKid, Dating App -->
+  <section id="projects">
+    <div class="container">
+      <h2>✨ Key Projects — Full‑Stack & Modern Web Solutions</h2>
+      <p style="margin-bottom: 2rem; color:#4b5563;">Scalable, responsive, and data-driven platforms that solve real business problems.</p>
+      <div class="projects-grid">
+        
+        <!-- Ruluk Investment Ltd – Corporate 3‑in‑1 Platform -->
+        <div class="project-card">
+          <div class="project-info">
+            <div class="project-subtitle"><i class="fas fa-chart-line"></i> Corporate Ecosystem</div>
+            <h3>Ruluk Investment Ltd</h3>
+            <p>Unified platform covering automobile sales, real-estate listings, and foreign admission processing. Clean modern interface with lead-gen modules and backend content management.</p>
+            <div class="project-tech">
+              <span class="tech-badge">HTML/CSS</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">PHP/MySQL</span>
+            </div>
+            <a href="https://rulukinvestmentlimited.com.ng/" target="_blank" class="project-link">Live Platform <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- WonderKid Store – E‑Commerce Web App -->
+        <div class="project-card">
+          <div class="project-info">
+            <div class="project-subtitle"><i class="fas fa-shopping-cart"></i> E‑Commerce Solution</div>
+            <h3>WonderKid Store</h3>
+            <p>Online store for children’s products with custom WooCommerce-style backend. Product upload, category management, order handling, and playful mobile-first UI optimized for speed.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">PHP/MySQL</span>
+              <span class="tech-badge">Responsive</span>
+            </div>
+            <a href="https://wonderkidstore.com.ng/" target="_blank" class="project-link">Visit Store <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Dating Web Application – Full‑Stack Platform -->
+        <div class="project-card">
+          <div class="project-info">
+            <div class="project-subtitle"><i class="fas fa-heart"></i> Social + Premium Features</div>
+            <h3>Dating Web Application</h3>
+            <p>Full-stack social platform with liking, commenting, group posting. Integrated facial-recognition sign-in, premium subscriptions, and optimized database performance for smooth scaling.</p>
+            <div class="project-tech">
+              <span class="tech-badge">HTML/CSS/JS</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">PHP/MySQL</span>
+              <span class="tech-badge">Face‑Recognition</span>
+            </div>
+            <a href="#" class="project-link" id="datingDemoLink">Demo Preview <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional showcase from your previous work + github -->
+      <div style="margin-top: 3rem; background: #f1f5f9; border-radius: 1.5rem; padding: 1.5rem; text-align: center;">
+        <p style="font-weight: 500;"><i class="fas fa-globe"></i> Explore more live projects: modern static websites, info portals, school management system & advanced UI/UX demos</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem;">
+          <a href="https://matthewayomide.github.io/education-Website/" target="_blank" class="btn-outline btn" style="padding: 0.4rem 1.2rem;">📘 Edu Website</a>
+          <a href="https://matthewayomide.github.io/abstract-website-/" target="_blank" class="btn-outline btn" style="padding: 0.4rem 1.2rem;">🎨 Abstract Hub</a>
+          <a href="https://matthewayomide.github.io/realestateweb/" target="_blank" class="btn-outline btn" style="padding: 0.4rem 1.2rem;">🏠 Real Estate</a>
+          <a href="https://training.grynbricks.com.ng/" target="_blank" class="btn-outline btn" style="padding: 0.4rem 1.2rem;">🏫 School Mgmt</a>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="https://github.com/matthewayomide" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> Explore GitHub Repos</a>
+        <a href="https://www.linkedin.com/in/matthew-aninkan-638a28256/" target="_blank" class="btn btn-outline" style="margin-left: 1rem;"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- collaboration & contact -->
+  <section id="contact">
+    <div class="container">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+        <div style="flex: 1.2;">
+          <h2>🚀 Let's Build Together</h2>
+          <p class="hero-desc" style="font-size:1rem;">I’m driven to bring ideas to reality with full-stack technologies. Whether you need a blazing-fast frontend, a data-driven web app, or WordPress solution — let's collaborate to boost your company presence on the Internet with modern tech and SEO.</p>
+          <div style="margin: 2rem 0;">
+            <i class="fas fa-envelope" style="color:#2563eb;"></i> <strong>Email:</strong> matthew.aninkan@example.com<br>
+            <i class="fab fa-github"></i> <strong>GitHub:</strong> /matthewayomide<br>
+            <i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> Matthew Aninkan
+          </div>
+          <div class="cert-section" style="background: linear-gradient(120deg, #eef2ff, #ffffff);">
+            <i class="fas fa-quote-left" style="font-size: 2rem; color:#2563eb;"></i>
+            <p style="font-weight: 500; margin-top: 0.5rem;">"I'm committed to solving real problems with elegant code, clean design, and user-first mindset. Let's make your next digital product exceptional."</p>
+            <p>— Matthew Aninkan, Web Developer & Instructor</p>
+          </div>
+        </div>
+        <div style="flex: 1;">
+          <div class="contact-form">
+            <h3>📩 Send a Message</h3>
+            <form id="contactForm">
+              <div class="form-group"><input type="text" placeholder="Your name" id="name" required></div>
+              <div class="form-group"><input type="email" placeholder="Email address" id="email" required></div>
+              <div class="form-group"><textarea rows="4" placeholder="Tell me about your project or idea..." id="message" required></textarea></div>
+              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><i class="fas fa-comment-dots"></i> Start Collaboration</button>
+              <p style="font-size: 0.75rem; margin-top: 1rem; text-align:center;">I’ll get back to you within 24h — Let's innovate together!</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="social-links">
+      <a href="https://github.com/matthewayomide" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/matthew-aninkan-638a28256/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p style="margin-top: 1rem;">© 2025 Matthew Aninkan — Professional Web Dev & Tech Instructor. Modern, SEO, Responsive solutions.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-code"></i> Built with HTML/CSS/JS | Full-Stack | Problem-solving mindset</p>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('.nav-links a, .hero-buttons a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if(href && href !== '#' && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // simple form handler (demo alert)
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(name && email && message) {
+        alert(`Thanks ${name}! I've received your message. I'll reach out to you soon at ${email}. Let's build something amazing.`);
+        contactForm.reset();
+      } else {
+        alert('Please fill in all fields so we can connect properly.');
+      }
+    });
+  }
+
+  // Dating app demo preview handler (since no live URL provided, show info)
+  const datingLink = document.getElementById('datingDemoLink');
+  if(datingLink) {
+    datingLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("📱 Dating Web Application – Full-Stack Platform\n\nFeatures: Liking, commenting, group posting, facial-recognition sign-in, premium subscription options, and database performance optimization.\n\n🚀 For a live demo or access to the codebase, please contact me directly.");
+    });
+  }
+
+  // Additional micro interaction
+  const statItems = document.querySelectorAll('.stat-item');
+  statItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      item.style.transform = 'translateX(5px)';
+      item.style.transition = '0.2s';
+    });
+    item.addEventListener('mouseleave', () => {
+      item.style.transform = 'translateX(0)';
+    });
+  });
+</script>
+</body>
+</html>
+```
