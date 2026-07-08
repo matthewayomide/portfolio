@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matthew Aninkan · Elite Full-Stack Engineer</title>
+    <title>Matthew Aninkan · Full-Stack & Graphics</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
@@ -442,7 +442,7 @@
             font-size: 0.8rem;
         }
 
-        /* ---- PROJECTS ---- */
+        /* ---- PROJECTS (coding) ---- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -513,6 +513,154 @@
         }
         .project-card .card-body .link:hover {
             color: var(--gold-light);
+        }
+
+        /* ---- GRAPHICS GALLERY ---- */
+        .graphics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .graphic-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.4s;
+            aspect-ratio: 1 / 1;
+            background: var(--card-dark);
+        }
+        .graphic-item:hover {
+            transform: scale(1.03);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+        .graphic-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s;
+        }
+        .graphic-item:hover img {
+            filter: brightness(0.7);
+        }
+        .graphic-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .graphic-item:hover .overlay {
+            opacity: 1;
+        }
+        .graphic-item .overlay h5 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .graphic-item .overlay span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .graphic-item .zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: var(--gold);
+            color: var(--dark-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.4s;
+            opacity: 0;
+        }
+        .graphic-item:hover .zoom-icon {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 168, 83, 0.1);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+        }
+        .lightbox .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--text-light);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+        .lightbox .close-btn:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+        .lightbox .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox .nav-btn:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+        }
+        .lightbox .prev-btn { left: 30px; }
+        .lightbox .next-btn { right: 30px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         /* ---- SKILLS ---- */
@@ -766,6 +914,7 @@
         @media (max-width: 1024px) {
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
             .projects-grid { grid-template-columns: 1fr 1fr; }
+            .graphics-grid { grid-template-columns: repeat(2, 1fr); }
             .testimonials-grid { grid-template-columns: 1fr 1fr; }
             .contact-wrapper { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -791,6 +940,7 @@
             .hero-stats { gap: 30px; flex-wrap: wrap; justify-content: center; }
 
             .projects-grid { grid-template-columns: 1fr; }
+            .graphics-grid { grid-template-columns: repeat(2, 1fr); }
             .testimonials-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
 
@@ -799,12 +949,16 @@
             .contact-form .full-width { grid-column: span 1; }
 
             section { padding: 70px 5%; }
+            .lightbox .nav-btn { width: 40px; height: 40px; font-size: 1.5rem; }
+            .lightbox .prev-btn { left: 10px; }
+            .lightbox .next-btn { right: 10px; }
         }
 
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.5rem; }
             .hero-buttons .btn { width: 100%; justify-content: center; }
             .section-header h2 { font-size: 2.2rem; }
+            .graphics-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
         }
     </style>
 </head>
@@ -824,7 +978,8 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#projects">Coding</a></li>
+            <li><a href="#graphics">Graphics</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact" class="nav-cta">Hire Me</a></li>
         </ul>
@@ -834,7 +989,7 @@
     <section class="hero">
         <div class="hero-badge">✦ Available for Immediate Impact</div>
         <h1>Matthew <span class="highlight">Aninkan</span></h1>
-        <p>Full-Stack Engineer &amp; IT Instructor crafting high-performance web applications, AI-driven experiences, and mentoring the next generation of tech talent.</p>
+        <p>Full-Stack Engineer &amp; Graphics Designer · Crafting high-performance web applications, stunning visual designs, and mentoring the next generation of tech talent.</p>
         <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Start a Project</a>
             <a href="#projects" class="btn btn-secondary"><i class="fas fa-eye"></i> View My Work</a>
@@ -842,7 +997,7 @@
         <div class="hero-stats">
             <div class="stat"><h3>5+</h3><p>Years Experience</p></div>
             <div class="stat"><h3>100+</h3><p>Students Mentored</p></div>
-            <div class="stat"><h3>15+</h3><p>Projects Delivered</p></div>
+            <div class="stat"><h3>50+</h3><p>Design Projects</p></div>
         </div>
     </section>
 
@@ -850,14 +1005,14 @@
     <section id="about">
         <div class="section-header">
             <span class="label">About Me</span>
-            <h2>Engineering <span>Excellence</span></h2>
-            <p>Passionate about building secure, scalable solutions that drive real business impact.</p>
+            <h2>Engineering <span>&amp; Design</span></h2>
+            <p>Passionate about building secure, scalable solutions and creating stunning visuals that drive real business impact.</p>
         </div>
         <div class="about-grid">
             <div class="about-text">
-                <h3>Full-Stack Developer &amp; IT Instructor</h3>
+                <h3>Full-Stack Developer &amp; Graphics Designer</h3>
                 <p>With over 5 years of experience, I design and develop responsive web applications, e-commerce platforms, and AI-enhanced digital products. I combine strong design sensibilities with deep technical expertise to deliver solutions that are both beautiful and robust.</p>
-                <p>Currently leading development at Digital Micro Technology (DMT) ICT Institute, where I mentor 100+ students in web development, UI/UX, data science, and emerging technologies. I also co-founded MattTechies Academy, a modern tech education brand empowering over 250 students with practical digital skills.</p>
+                <p>Currently leading development at Digital Micro Technology (DMT) ICT Institute, where I mentor 100+ students in web development, UI/UX, graphics design, and emerging technologies. I also co-founded MattTechies Academy, a modern tech education brand empowering over 250 students with practical digital skills.</p>
                 <div class="signature">— Matthew Aninkan</div>
             </div>
             <div class="about-image">
@@ -888,7 +1043,7 @@
                     <li><i class="fas fa-check"></i> Mentored 100+ students in web dev, UI/UX, data science &amp; AI</li>
                     <li><i class="fas fa-check"></i> Integrated ML liveliness checks for advanced authentication</li>
                     <li><i class="fas fa-check"></i> Dating web app with facial recognition &amp; premium features</li>
-                    <li><i class="fas fa-check"></i> Enterprise projects that strengthened DMT's reputation</li>
+                    <li><i class="fas fa-check"></i> Graphics design training &amp; brand identity projects</li>
                 </ul>
             </div>
 
@@ -908,11 +1063,11 @@
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Coding Projects -->
     <section id="projects">
         <div class="section-header">
             <span class="label">Portfolio</span>
-            <h2>Key <span>Projects</span></h2>
+            <h2>Coding <span>Projects</span></h2>
             <p>Real-world solutions built with full-stack expertise and AI integration.</p>
         </div>
         <div class="projects-grid">
@@ -954,8 +1109,20 @@
         </div>
     </section>
 
+    <!-- Graphics Gallery -->
+    <section id="graphics" style="background: rgba(18, 18, 31, 0.3);">
+        <div class="section-header">
+            <span class="label">Creative Work</span>
+            <h2>Graphics <span>Design</span></h2>
+            <p>Visual designs crafted with precision, creativity, and attention to detail.</p>
+        </div>
+        <div class="graphics-grid" id="graphicsGrid">
+            <!-- Items will be populated by JS -->
+        </div>
+    </section>
+
     <!-- Skills -->
-    <section style="background: rgba(18, 18, 31, 0.3);">
+    <section>
         <div class="section-header">
             <span class="label">Expertise</span>
             <h2>Technical <span>Skills</span></h2>
@@ -976,6 +1143,8 @@
             <span class="skill-pill"><i class="fas fa-gamepad"></i>Game Dev</span>
             <span class="skill-pill"><i class="fas fa-users"></i>Mentorship</span>
             <span class="skill-pill"><i class="fas fa-cloud"></i>Cloud Computing</span>
+            <span class="skill-pill"><i class="fas fa-palette"></i>Graphic Design</span>
+            <span class="skill-pill"><i class="fas fa-ad"></i>Brand Identity</span>
         </div>
     </section>
 
@@ -1034,7 +1203,7 @@
         <div class="contact-wrapper">
             <div class="contact-info">
                 <h3>Let's Talk</h3>
-                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Whether you need a full-stack solution, AI integration, Branding,Graphics Design or technical mentorship, I'm here to help.</p>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Whether you need a full-stack solution, AI integration, Branding, Graphics Design or technical mentorship, I'm here to help.</p>
                 <div class="detail">
                     <i class="fas fa-map-pin"></i>
                     <div>
@@ -1068,6 +1237,7 @@
                     <option value="fullstack">Full-Stack Web Application</option>
                     <option value="ecommerce">E-Commerce Platform</option>
                     <option value="ai">AI / Machine Learning Integration</option>
+                    <option value="graphics">Graphics Design / Brand Identity</option>
                     <option value="consultation">Technical Consultation / Mentorship</option>
                 </select>
                 <textarea placeholder="Tell me about your project..." id="message" required></textarea>
@@ -1076,19 +1246,28 @@
         </div>
     </section>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="close-btn" id="closeLightbox"><i class="fas fa-times"></i></button>
+        <button class="nav-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <img id="lightboxImg" src="" alt="Preview" />
+        <button class="nav-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
                 <h4 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-light);">M<span style="color: var(--gold);">.</span>Aninkan</h4>
-                <p>Full-Stack Developer &amp; IT Instructor · Building secure, scalable, and user-friendly digital solutions while mentoring the next generation of tech talent.</p>
+                <p>Full-Stack Developer &amp; Graphics Designer · Building secure, scalable, and visually stunning solutions while mentoring the next generation of tech talent.</p>
             </div>
             <div class="footer-col">
                 <h4>Navigate</h4>
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#projects">Coding</a></li>
+                    <li><a href="#graphics">Graphics</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                 </ul>
             </div>
@@ -1123,25 +1302,97 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ---- Mobile Menu ----
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
-
-        // Close menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('navLinks').classList.remove('active');
             });
         });
 
-        // Form handler
+        // ---- Graphics Gallery Data ----
+        const graphicsData = [
+            { id: 1, title: "Brand Identity Design", category: "Branding", img: "fiysy_icon.jpg" },
+            { id: 2, title: "Social Media Graphics", category: "Social Media", img: "eid.jpg" },
+            { id: 3, title: "Corporate Logo Design", category: "Logo Design", img: "jstnex_logo.jpg" },
+            { id: 4, title: "Marketing Flyer", category: "Print Design", img: "fiysy_flyer.jpg" },
+            { id: 5, title: "Branding", category: "UI/UX", img: "ruluk_logo.jpg" },
+            { id: 6, title: "Facebook Cover Design", category: "Packaging", img: "facebook_cover.png" },
+            { id: 7, title: "Tech Start Up Branding", category: "Web Design", img: "safeguard.png" },
+            { id: 8, title: "Online store logo", category: "Print Design", img: "asiwaju_logo.jpg" },
+        ];
+
+        const grid = document.getElementById('graphicsGrid');
+        let currentIndex = 0;
+
+        function renderGallery() {
+            grid.innerHTML = '';
+            graphicsData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'graphic-item';
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.title}" loading="lazy" />
+                    <div class="zoom-icon"><i class="fas fa-expand"></i></div>
+                    <div class="overlay">
+                        <h5>${item.title}</h5>
+                        <span>${item.category}</span>
+                    </div>
+                `;
+                div.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(div);
+            });
+        }
+
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = graphicsData[index].img;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentIndex = (currentIndex + direction + graphicsData.length) % graphicsData.length;
+            lightboxImg.src = graphicsData[currentIndex].img;
+        }
+
+        document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+        document.getElementById('prevBtn').addEventListener('click', () => navigateLightbox(-1));
+        document.getElementById('nextBtn').addEventListener('click', () => navigateLightbox(1));
+
+        // Close on backdrop click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // ---- Form Handler ----
         function handleSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             alert(`Thank you, ${name}! Your project brief has been submitted. I'll review it and get back to you within 24 hours.`);
             document.getElementById('contactForm').reset();
         }
+
+        // ---- Init ----
+        renderGallery();
     </script>
 </body>
 </html>
